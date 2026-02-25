@@ -753,3 +753,324 @@ body {
   .top-bar-right { display: none; }
   .filter-tabs { flex-wrap: wrap; }
 }
+/* ── Monitoring Dashboard ──────────────────────────────────────────────────── */
+/* Append this entire block to the bottom of your existing App.css */
+
+.monitoring {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mon-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.btn-refresh-mon {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    border-radius: var(--radius);
+    padding: 8px 16px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: var(--mono);
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+.btn-refresh-mon:hover:not(:disabled) { border-color: var(--accent); color: var(--accent2); }
+.btn-refresh-mon:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* SLA alert banner */
+.sla-alert {
+    background: rgba(255, 77, 106, 0.08);
+    border: 1px solid rgba(255, 77, 106, 0.35);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+    animation: alertPulse 2s infinite;
+}
+@keyframes alertPulse {
+    0%, 100% { border-color: rgba(255,77,106,0.35); }
+    50%       { border-color: rgba(255,77,106,0.7); }
+}
+.sla-alert-icon { font-size: 18px; flex-shrink: 0; }
+.sla-alert span  { color: var(--text); font-size: 13px; }
+.sla-alert-ids   { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; width: 100%; }
+.breach-id {
+    font-family: var(--mono);
+    font-size: 10px;
+    background: rgba(255,77,106,0.12);
+    border: 1px solid rgba(255,77,106,0.25);
+    color: var(--red);
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+
+/* Metric cards row */
+.mon-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.metric-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.15s;
+}
+.metric-card:hover { border-color: var(--border2); }
+.metric-icon { font-size: 20px; flex-shrink: 0; }
+.metric-body { display: flex; flex-direction: column; gap: 2px; }
+.metric-value {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+}
+.metric-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; }
+.metric-sub   { font-size: 10px; color: var(--text3); }
+.metric-green .metric-value { color: var(--green); }
+.metric-red   .metric-value { color: var(--red); }
+.metric-yellow .metric-value { color: var(--yellow); }
+.metric-blue  .metric-value { color: var(--blue); }
+
+/* 2-col grid */
+.mon-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Panel */
+.mon-panel {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.panel-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.panel-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* SLA content */
+.sla-content {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.sla-gauge { flex-shrink: 0; }
+
+.sla-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sla-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.sla-stat-val {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 700;
+}
+.sla-stat-val.green  { color: var(--green); }
+.sla-stat-val.red    { color: var(--red); }
+.sla-stat-val.yellow { color: var(--yellow); }
+.sla-stat-lbl { font-size: 11px; color: var(--text3); }
+
+/* Performance grid */
+.perf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 4px;
+}
+.perf-stat {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.perf-val {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+}
+.perf-val.red { color: var(--red); }
+.perf-lbl { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Bar chart */
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    width: 100%;
+}
+.bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    gap: 4px;
+}
+.bar-fill {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+    transition: height 0.4s ease;
+    opacity: 0.85;
+}
+.bar-fill:hover { opacity: 1; }
+.bar-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--text3);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.chart-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    color: var(--text3);
+    font-family: var(--mono);
+    font-size: 12px;
+}
+
+/* Category list */
+.category-list { display: flex; flex-direction: column; gap: 10px; }
+
+.cat-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 40px 30px;
+    align-items: center;
+    gap: 10px;
+}
+.cat-name  { font-size: 12px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cat-bar-wrap { height: 6px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
+.cat-bar-fill  { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.5s ease; }
+.cat-pct  { font-family: var(--mono); font-size: 11px; color: var(--text3); text-align: right; }
+.cat-count { font-family: var(--mono); font-size: 11px; color: var(--text2); text-align: right; }
+
+/* Monitoring table */
+.mon-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.mon-table th {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--text3);
+    text-transform: uppercase;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+.mon-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    color: var(--text2);
+}
+.mon-table tr:last-child td { border-bottom: none; }
+.mon-table tr:hover td { background: var(--bg3); }
+
+.mono-sm   { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.green     { color: var(--green) !important; }
+.red       { color: var(--red) !important; }
+.error-msg { font-size: 11px; max-width: 300px; }
+
+/* Power BI note */
+.powerbi-note {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+.powerbi-note p {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.7;
+}
+.powerbi-note code {
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--bg4);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--accent2);
+}
+
+/* Loading / error states */
+.mon-loading, .mon-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 80px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text3);
+}
+.mon-error { color: var(--red); flex-direction: column; gap: 16px; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .mon-row  { grid-template-columns: repeat(3, 1fr); }
+    .mon-grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+    .mon-row  { grid-template-columns: repeat(2, 1fr); }
+    .cat-row  { grid-template-columns: 100px 1fr 36px 28px; }
+}
