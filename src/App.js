@@ -64,11 +64,12 @@ const UploadZone = ({ onUploadSuccess }) => {
         }
     };
 
-    const onDrop = useCallback((e) => {
-        e.preventDefault();
-        setDragging(false);
-        handleFile(e.dataTransfer.files[0]);
-    }, []);
+   const onDrop = useCallback((e) => {
+    e.preventDefault();
+    setDragging(false);
+    handleFile(e.dataTransfer.files[0]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
     return (
         <div className="upload-section">
